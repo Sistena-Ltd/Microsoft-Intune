@@ -9,7 +9,7 @@ due to invalid characters or inconsistent SMBIOS serial formatting (common with 
 
 If the device name does not already match the intended pattern, it:
 - Retrieves and sanitises the BIOS serial number
-- Constructs a new name using the defined template (e.g. SIS-<Serial>)
+- Constructs a new name using the defined template (e.g. PrefixEx-<Serial>)
 - Validates name length and characters
 - Renames the device if required
 - Logs all actions to the Intune Management Extension logs folder
@@ -20,7 +20,7 @@ Last edit: 05/11/2025
 #>
 
 #================= CONFIGURATION =================
-$Prefix = "DBC-"                          # Desired prefix for all devices
+$Prefix = "PrefixEx-"                          # Desired prefix for all devices
 $LogPath = "$env:ProgramData\IntuneRenamer\RenameLog.txt"
 $MaxNameLength = 15                       # Windows hostname length limit
 # Only run on Autopilot-enrolled devices (checked via registry); set to $false to run everywhere
@@ -137,3 +137,4 @@ try {
     Write-Log "Fatal error: $($_.Exception.Message)"
     exit 1
 }
+
